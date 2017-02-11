@@ -19,6 +19,14 @@ class MapController {
         marker.setBalloonState(marker.balloonState);
     }
 
+    appendGeoObject (yobject) {
+        this._geoCollection.add(yobject);
+    }
+
+    removeGeoObject (yobject) {
+        this._geoCollection.remove(yobject);
+    }
+
     get map () {
         return this._map;
     }
