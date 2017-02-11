@@ -67,13 +67,13 @@ class Polygon extends Component {
 
         Object.keys(properties).forEach(propName => {
             if (!prevProps.properties || properties[propName] !== prevProps.properties[propName]) {
-                this._controller.setProperty(propName, properties[propName]);
+                this._ypolygon.properties.set(propName, properties[propName]);
             }
         });
 
         Object.keys(options).forEach(optName => {
             if (!prevProps.options || options[optName] !== prevProps.options[optName]) {
-                this._controller.setOption(optName, options[optName]);
+                this._ypolygon.options.set(optName, options[optName]);
             }
         });
 
