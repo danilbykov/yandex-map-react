@@ -29,6 +29,14 @@ class Api {
             return instance;
         });
     }
+
+    getApiPromise () {
+        if (this.api) {
+            return Promise.resolve(this.api);
+        } else {
+            return this.load();
+        }
+    }
 }
 
 export default new Api();

@@ -36,7 +36,8 @@
     "eslint-config-loris": "^4.0.0",
     "webpack": "^1.12.14",
     "react": "^0.14.8",
-    "react-dom": "^0.14.8"
+    "react-dom": "^0.14.8",
+    "babelify": "^*"
   },
   "peerDependencies": {
     "react": "^0.14.8 || ^15.0.0",
