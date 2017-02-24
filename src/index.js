@@ -4,6 +4,7 @@ import MarkerLayout from './MarkerLayout';
 import BalloonLayout from './BalloonLayout';
 import Polygon from './Polygon';
 import ConstructorJSONImport from './ConstructorJSONImport'
+import api from './api';
 
 export {
     Map,
@@ -11,4 +12,6 @@ export {
     MarkerLayout,
     BalloonLayout,
     Polygon,
-    ConstructorJSONImport};
+    ConstructorJSONImport,
+    api
+};
