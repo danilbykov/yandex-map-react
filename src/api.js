@@ -24,17 +24,17 @@ class Api {
      * @return {Promise}
      */
     load (options={}) {
-        return loadApi(options).then((instance) => {
+        return this._apiPromise = loadApi(options).then((instance) => {
             this.api = instance;
             return instance;
         });
     }
 
     getApiPromise () {
-        if (this.api) {
-            return Promise.resolve(this.api);
+        if (this._apiPromise) {
+          return this._apiPromise;
         } else {
-            return this.load();
+          return this.load();
         }
     }
 }

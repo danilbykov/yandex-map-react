@@ -17,7 +17,8 @@ class YandexMap extends Component {
         state: PropTypes.object,
         coordorder: PropTypes.oneOf(['latlong', 'longlat']),
         options: PropTypes.object,
-        bounds: PropTypes.array
+        bounds: PropTypes.array,
+        hidden: PropTypes.bool
     }
 
     static defaultProps = {
@@ -32,7 +33,8 @@ class YandexMap extends Component {
         options: {},
         style: {
             position: 'relative'
-        }
+        },
+        hidden: false
     }
 
     static childContextTypes = {
@@ -43,7 +45,8 @@ class YandexMap extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            isAPILoaded: false
+            isAPILoaded: false,
+            hidden: props.hidden
         };
     }
 
@@ -83,6 +86,13 @@ class YandexMap extends Component {
                     }
 
                     break;
+                case 'hidden':
+                    if (this.state.hidden && !nextProps.hidden) {
+                      this._init();
+                      this.setState(prevState => {
+                        return {...prevState, hidden: false};
+                      });
+                    }
                 default:
                     break;
             }
@@ -90,10 +100,16 @@ class YandexMap extends Component {
     }
 
     componentDidMount () {
+        if (!this.state.hidden) {
+          this._init();
+        }
+    }
+
+    _init() {
         if (api.isAvailible()) {
             this._onAPILoad(api.getAPI());
         } else {
-            api.load(this._getAPIParams())
+            api.getApiPromise(this._getAPIParams())
                 .then(this._onAPILoad.bind(this))
                 .catch((error) => console.log('Error occured: %s', error));
         }
